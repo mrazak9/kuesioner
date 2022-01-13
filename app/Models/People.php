@@ -19,9 +19,4 @@ class People extends Model
         'graduation_year',
     ];
 
-    public function setExpiredAttribute($value)
-    {
-        $this->attributes['graduation_year'] = date ('Y', strtotime($value));
-    }
-
 }

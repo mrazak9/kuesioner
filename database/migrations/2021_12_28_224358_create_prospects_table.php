@@ -23,7 +23,7 @@ class CreateProspectsTable extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('route')->nullable();
-            $table->integer('owner')->nullable();
+            $table->integer('owner');
             $table->integer('id_registrant')->nullable();
             $table->boolean('is_iput_form')->default(False);
             $table->boolean('is_pay_form')->default(False);

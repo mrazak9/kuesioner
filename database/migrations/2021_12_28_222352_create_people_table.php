@@ -19,7 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('nim')->nullable();
             $table->string('phone');
             $table->string('school_origin')->nullable();
-            $table->date('graduation_year')->nullable();
+            $table->string('graduation_year')->nullable();
             //dosenwali atau pic kerjasama sekolah
             $table->integer('id_user')->nullable();
 
