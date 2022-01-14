@@ -10,6 +10,8 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\Transactoin\store;
+use App\Http\Requests\User\Transactoin\StorePPA;
 
 class TransactoinController extends Controller
 {
@@ -32,19 +34,41 @@ class TransactoinController extends Controller
     {
         
     }
-    public function createPpg()
+    public function createPpg(Request $request)
     {
         // return $user;
+        $transactions = Transaction::with('Prospect')->Where('user_id',Auth::id())->get();
+        $count= $transactions->count();
+        if ($count == 10) {
+            $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
+            return redirect(route('dashboard'));
+        }
         return view('transaction/ppg');
     }
-    public function createPpa()
+    public function createPpa(Request $request)
     {
         // return $user;
-        return view('transaction/ppa');
+        $transactions = Transaction::with('Prospect')->Where('user_id',Auth::id())->get();
+        $count= $transactions->count();
+        if ($count == 10) {
+            $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
+            return redirect(route('dashboard'));
+        }
+        if (Auth::user()) {
+            return view('transaction/ppa_user');
+        }else {
+            return view('transaction/ppa');
+        }
     }
-    public function createPmm()
+    public function createPmm(Request $request)
     {
         // return $user;
+        $transactions = Transaction::with('Prospect')->Where('user_id',Auth::id())->get();
+        $count= $transactions->count();
+        if ($count == 10) {
+            $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
+            return redirect(route('dashboard'));
+        }
         return view('transaction/pmm');
     }
 
@@ -54,13 +78,15 @@ class TransactoinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function ppgStore(Request $request)
+    public function ppgStore(Store $request)
     {
+        return $request->all();
          // mapping request data
          $data = $request->all();
          $data['user_id'] = Auth::id();
          $data['status'] = 'Di Ajukan';
          $data['period'] = date ('Y');
+         $data['route']='PPG';
          
          // create prospect
          $prospect = new Prospect();
@@ -83,87 +109,101 @@ class TransactoinController extends Controller
          return redirect(route('transaction.success'));
     }
 
-    public function ppaStore(Request $request)
+    public function ppaStore(StorePPA $request)
     {
-         // mapping request data
+        return  $request->all();
+
+        // mapping request data
+        $data = $request->all();      
+ 
+        // create person 
+        $person = new People();
+        $person->name = $data['user_name'];
+        $person->nim = $data['nim'];
+        $person->phone = $data['user_phone'];
+        $person->school_origin = $data['prodi_asal'];
+        $person->graduation_year = $data['year'];
+        $person->save();
+
+        // create user
+        $user = new User();
+        $user->name = $data['user_name'];
+        $user->email = $data['user_email'];
+        $user->occupation = 'Alumni';
+        $user->avatar = Auth::user()->avatar;
+        $user->people_id = $person->id;
+        $user->save();
+
+        $data['user_id'] = $user->id;
+        $data['status'] = 'Di Ajukan';
+        $data['period'] = date ('Y');
+        $data['route']='PPA';
+            
+        // create prospect
+        $prospect = new Prospect();
+        $prospect->name = $data['name'];
+        $prospect->phone = $data['phone'];
+        $prospect->email = $data['email'];
+        $prospect->school = $data['school'];
+        $prospect->address = $data['address'];
+        $prospect->city = $data['city'];
+        $prospect->route = 'PPG';
+        $prospect->owner = $data['user_id'];
+        $prospect->save();
+
+        $data['prospect_id'] = $prospect->id;
+            
+        // create transaction
+        $transaction = Transaction::create($data);
+        //  $this->getSnapRedirect($transaction);
+
+        return redirect(route('transaction.success')); 
+    }
+
+    public function ppaStoreUser(Store $request)
+    {
+        return  $request->all();
+
+        // mapping request data
         $data = $request->all();       
-
-        if (!Auth::id()) {
-            // create person 
-            $person = new People();
-            $person->name = $data['user_name'];
-            $person->nim = $data['nim'];
-            $person->phone = $data['user_phone'];
-            $person->school_origin = $data['prodi_asal'];
-            $person->graduation_year = $data['year'];
-            $person->save();
-
-            // create user
-            $user = new User();
-            $user->name = $data['user_name'];
-            $user->email = $data['user_email'];
-            $user->occupation = 'Alumni';
-            $user->people_id = $person->id;
-            $user->save();
-
-            $data['user_id'] = $user->id;
-            $data['status'] = 'Di Ajukan';
-            $data['period'] = date ('Y');
+        
+        $data['user_id'] = Auth::id();
+        $data['status'] = 'Di Ajukan';
+        $data['period'] = date ('Y');
+        $data['route']='PPA';
             
-            // create prospect
-            $prospect = new Prospect();
-            $prospect->name = $data['name'];
-            $prospect->phone = $data['phone'];
-            $prospect->email = $data['email'];
-            $prospect->school = $data['school'];
-            $prospect->address = $data['address'];
-            $prospect->city = $data['city'];
-            $prospect->route = 'PPG';
-            $prospect->owner = $data['user_id'];
-            $prospect->save();
+        // create prospect
+        $prospect = new Prospect();
+        $prospect->name = $data['name'];
+        $prospect->phone = $data['phone'];
+        $prospect->email = $data['email'];
+        $prospect->school = $data['school'];
+        $prospect->address = $data['address'];
+        $prospect->city = $data['city'];
+        $prospect->route = 'PPG';
+        $prospect->owner = $data['user_id'];
+        $prospect->save();
 
-            $data['prospect_id'] = $prospect->id;
+        $data['prospect_id'] = $prospect->id;
             
-            // create transaction
-            $transaction = Transaction::create($data);
-            //  $this->getSnapRedirect($transaction);
+        // create transaction
+        $transaction = Transaction::create($data);
+        //  $this->getSnapRedirect($transaction);
 
-            return redirect(route('transaction.success'));
-        }else{
-            $data['user_id'] = Auth::id();
-            $data['status'] = 'Di Ajukan';
-            $data['period'] = date ('Y');
-            
-            // create prospect
-            $prospect = new Prospect();
-            $prospect->name = $data['name'];
-            $prospect->phone = $data['phone'];
-            $prospect->email = $data['email'];
-            $prospect->school = $data['school'];
-            $prospect->address = $data['address'];
-            $prospect->city = $data['city'];
-            $prospect->route = 'PPG';
-            $prospect->owner = $data['user_id'];
-            $prospect->save();
-
-            $data['prospect_id'] = $prospect->id;
-            
-            // create transaction
-            $transaction = Transaction::create($data);
-            //  $this->getSnapRedirect($transaction);
-
-            return redirect(route('transaction.success'));
-        }
+        return redirect(route('transaction.success'));
         
     }
 
-    public function pmmStore(Request $request)
+    public function pmmStore(Store $request)
     {
+        return $request->all();
+
          // mapping request data
          $data = $request->all();
          $data['user_id'] = Auth::id();
          $data['status'] = 'Di Ajukan';
          $data['period'] = date ('Y');
+         $data['route']='PMM';
          
          // create prospect
          $prospect = new Prospect();

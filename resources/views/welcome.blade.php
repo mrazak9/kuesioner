@@ -52,7 +52,7 @@
                         Dapatkan kelipatan Rp. 500.000 untuk setiap calon mahasiswa yang di daftarkan.
                     </p>
                     <p class="mt-5">
-                        <a href="{{route('transaction.create.pmm')}}" class="btn btn-master btn-thirdty me-3">
+                        <a href="{{ route('transaction.create.pmm') }}" class="btn btn-master btn-thirdty me-3">
                             Input PMM
                         </a>
                     </p>
@@ -84,9 +84,17 @@
                                     <div class="divider"></div>
                                 </div>
                                 <p>
-                                    <a href="{{route('transaction.create.ppa')}}" class="btn btn-master btn-primary w-100 mt-3">
-                                        Input PPA
-                                    </a>
+                                    @if (Auth::user())
+                                        <a href="{{ route('transaction.create.ppa_user') }}"
+                                            class="btn btn-master btn-primary w-100 mt-3">
+                                            Input PPA
+                                        </a>
+                                    @else
+                                        <a href="{{ route('transaction.create.ppa') }}"
+                                            class="btn btn-master btn-primary w-100 mt-3">
+                                            Input PPA
+                                        </a>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -115,7 +123,8 @@
                                     <div class="divider"></div>
                                 </div>
                                 <p>
-                                    <a href="{{route('transaction.create.ppg')}}" class="btn btn-master btn-primary w-100 mt-3">
+                                    <a href="{{ route('transaction.create.ppg') }}"
+                                        class="btn btn-master btn-primary w-100 mt-3">
                                         Input PPG
                                     </a>
                                 </p>
