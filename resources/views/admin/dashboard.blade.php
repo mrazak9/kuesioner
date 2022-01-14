@@ -1,58 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="dashboard my-5">
-        <div class="container">
-            <div class="row text-left">
-                <div class=" col-lg-12 col-12 header-wrap mt-4">
-                    <p class="story">
-                        DASHBOARD
-                    </p>
-                    <h2 class="primary-header ">
-                        My Bootcamps
-                    </h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">
+                        Data Usulan
+                    </div>
+                    <div class="card-body">
+                        @include('components.alert')
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Pengusul</th>
+                                    <th>Jalur</th>
+                                    <th>Status</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($transactions as $trans)
+                                    <tr>
+                                        <td>{{$trans->prospect->name}}</td>
+                                        <td>{{$trans->user->name}}</td>
+                                        <td>{{$trans->route}}</td>
+                                        <td>{{$trans->status}}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-thirdty" style="font-size: x-small; padding: 5px 10px 5px 10px">View</a>
+                                            <a href="#" class="btn btn-primary" style="font-size: x-small; padding: 5px 10px 5px 10px">Edit</a>
+                                            <a href="#" class="btn btn-delete" style="font-size: x-small; padding: 5px 10px 5px 10px">Delete</a>
+                                        </td>
+                                       
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3">No camps registered</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="row my-5">
-                @include('components.alert')
-                <table class="table">
-                    <tbody>
-                        @forelse ($transactions as $transaction)
-                            <tr class="align-middle">
-                                <td width="18%">
-                                    <img src="{{asset('images/item_bootcamp.png')}}" height="120" alt="">
-                                </td>
-                                <td>
-                                    <p class="mb-2">
-                                        <strong>{{$transaction->id}}</strong>
-                                    </p>
-                                    <p>
-                                        {{$transaction->created_at->format('M d, Y')}}
-                                    </p>
-                                </td>
-                                <td>
-                                    <strong>${{$transaction->route}}k</strong>
-                                </td>
-                                <td>
-                                    <strong>{{$transaction->status}}</strong>
-                                </td>
-                                <td>
-                                    @if ($transaction->status == 'waiting')
-                                        <a href="#" class="btn btn-primary">Pay Here</a>
-                                    @endif
-                                </td>
-                                
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5">
-                                    <h3>No Camp Registered</h3>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
         </div>
-    </section>
+    </div>
 @endsection

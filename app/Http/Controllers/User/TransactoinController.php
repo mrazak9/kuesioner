@@ -41,7 +41,7 @@ class TransactoinController extends Controller
         $count= $transactions->count();
         if ($count == 10) {
             $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
-            return redirect(route('dashboard'));
+            return redirect(route('user.dashboard'));
         }
         return view('transaction/ppg');
     }
@@ -52,7 +52,7 @@ class TransactoinController extends Controller
         $count= $transactions->count();
         if ($count == 10) {
             $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
-            return redirect(route('dashboard'));
+            return redirect(route('user.dashboard'));
         }
         if (Auth::user()) {
             return view('transaction/ppa_user');
@@ -67,7 +67,7 @@ class TransactoinController extends Controller
         $count= $transactions->count();
         if ($count == 10) {
             $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
-            return redirect(route('dashboard'));
+            return redirect(route('user.dashboard'));
         }
         return view('transaction/pmm');
     }

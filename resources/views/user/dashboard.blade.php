@@ -6,7 +6,7 @@
             <div class="row text-left">
                 <div class=" col-lg-12 col-12 header-wrap mt-4">
                     <p class="story">
-                        DASHBOARD
+                        DASHBOARD User
                     </p>
                     <h2 class="primary-header ">
                         Data {{$data}} Saya 

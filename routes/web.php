@@ -35,15 +35,21 @@ Route::get('transaction/success',[UserTransaction::class, 'success'])->name('tra
 Route::post('transaction/ppa',[UserTransaction::class, 'ppaStore'])->name('transaction.store.ppa');
 Route::get('transaction/ppa',[UserTransaction::class, 'createPpa'])->name('transaction.create.ppa');
 
+
+
 Route::middleware(['auth'])->group(function(){
     // Transaction route
     Route::get('transaction/success',[UserTransaction::class, 'success'])->name('transaction.success');
-    Route::get('transaction/ppa_user',[UserTransaction::class, 'createPpa'])->name('transaction.create.ppa_user');
-    Route::post('transaction/ppa_user',[UserTransaction::class, 'ppaStore_user'])->name('transaction.store.ppa_user');
-    Route::get('transaction/pmm',[UserTransaction::class, 'createPmm'])->name('transaction.create.pmm');
-    Route::post('transaction/pmm',[UserTransaction::class, 'pmmStore'])->name('transaction.store.pmm');
-    Route::get('transaction/ppg',[UserTransaction::class, 'createPpg'])->name('transaction.create.ppg');
-    Route::post('transaction/ppg',[UserTransaction::class, 'ppgStore'])->name('transaction.store.ppg');
+    Route::get('transaction/ppa_user',[UserTransaction::class, 'createPpa'])->name('transaction.create.ppa_user')->middleware('ensureUserRole:alumni');
+    Route::post('transaction/ppa_user',[UserTransaction::class, 'ppaStore_user'])->name('transaction.store.ppa_user')->middleware('ensureUserRole:alumni');
+    Route::get('transaction/pmm',[UserTransaction::class, 'createPmm'])->name('transaction.create.pmm')->middleware('ensureUserRole:student');
+    Route::post('transaction/pmm',[UserTransaction::class, 'pmmStore'])->name('transaction.store.pmm')->middleware('ensureUserRole:student');
+    Route::get('transaction/ppg',[UserTransaction::class, 'createPpg'])->name('transaction.create.ppg')->middleware('ensureUserRole:teacher');
+    Route::post('transaction/ppg',[UserTransaction::class, 'ppgStore'])->name('transaction.store.ppg')->middleware('ensureUserRole:teacher');
+
+    // add users
+    Route::get('user/create',[UserController::class, 'create'])->name('user.create')->middleware('ensureUserRole:admin');
+    Route::post('user/create',[UserController::class, 'store'])->name('user.store')->middleware('ensureUserRole:admin');
 
     // Dashboard route
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');

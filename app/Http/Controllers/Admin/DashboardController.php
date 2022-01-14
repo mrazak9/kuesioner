@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {       
         $data = null;
         $transactions = Transaction::with('Prospect')->get();
-        return view('user.dashboard',[
+        return view('admin.dashboard',[
             'transactions' => $transactions,
             'data' => $data
         ]);

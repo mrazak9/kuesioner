@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\Store;
+use App\Http\Requests\User\Transactoin\StoreUser as TransactoinStoreUser;
+use App\Models\People;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,5 +40,43 @@ class UserController extends Controller
         Auth::login($user, true);
 
         return redirect(route('home'));
+    }
+
+    public function create(Request $request)
+    {
+        // return $user;
+        return view('user/create');
+    }
+
+    public function store(Store $request)
+    {
+        // return  $request->all();
+        // mapping request data
+        $data = $request->all();      
+ 
+        // create person 
+        $person = new People();
+        $person->name = $data['name'];
+        $person->nim = $data['nim'];
+        $person->phone = $data['phone'];
+        $person->school_origin = $data['prodi_asal'];
+        $person->graduation_year = $data['year'];
+        $person->save();
+
+        // create user
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->occupation = $data['occupation'];
+        $user->avatar = Auth::user()->avatar;
+        $user->people_id = $person->id;
+        $user->is_admin = false;
+        $user->save();
+
+        // create transaction
+        //  $user = User::create($data);
+        //  $this->getSnapRedirect($transaction);
+
+        return redirect(route('transaction.success')); 
     }
 }

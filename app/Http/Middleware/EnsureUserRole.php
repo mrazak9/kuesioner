@@ -17,13 +17,21 @@ class EnsureUserRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        // if (($role == 'admin' && !$user->is_admin) || ($role == 'student' && !$user->occupation=='Mahasiswa') || ($role == 'teacher' && !$user->occupation=='Guru') || ($role == 'alumni' && !$user->occupation=='Alumni'))  {
-            //     abort(403);
-            // }
+        // $user = Auth::user();
+        // if (($role == 'admin' && !$user->is_admin) || ($role == 'user' && $user->is_admin)) {
+        //     abort(403);
+        // }
+        // elseif (($role == 'student' && !$user->occupation=="Mahasiswa") || ($role == 'teacher' && !$user->occupation=='Guru') || ($role == 'alumni' && !$user->occupation == "Alumni")) {
+        //     abort(403);
+        // }
+        // return $next($request);
         $user = Auth::user();
-        if (($role == 'admin' && !$user->is_admin) || ($role == 'user' && $user->is_admin)) {
-            abort(403);
+        if (($role == 'admin' && $user->is_admin) || ($role == 'user' && !$user->is_admin)) {
+            return $next($request);
+        } elseif (($role == 'student' && $user->occupation=="Mahasiswa") || ($role == 'teacher' && $user->occupation=='Guru') || ($role == 'alumni' && $user->occupation == "Alumni")){
+            return $next($request);
+        } else {
+            return redirect('/');
         }
-        return $next($request);
     }
 }
