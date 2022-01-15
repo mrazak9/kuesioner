@@ -23,7 +23,8 @@ class AdminUserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@lpkia.ac.id',
             'email_verified_at' => date('Y-m-d H:i:s', time()),
-            'password' => \bcrypt('admin'),
+            'password' => \bcrypt('MisJaya2017'),
+            'occupation' =>'Admin',
             'is_admin'=> true,
             'people_id' => People::inRandomOrder()->first()->id,
         ]);
