@@ -13,7 +13,7 @@
                     <a class="nav-link"  href="#">Program Beasiswa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Program Prtisipasi</a>
+                    <a class="nav-link" href="#">Program Partisipasi</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">PPA</a>

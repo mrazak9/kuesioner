@@ -9,11 +9,11 @@
                     <div class="row">
                         <div class="col-lg-6 col-12 copywriting">
                             <h1 class="header">
-                                Bergabung bersama <span class="text-purple">Insitut Digital Ekonomi <br> LPKIA </span>
+                                Bergabung bersama <span class="text-purple">Institut Digital Ekonomi <br> LPKIA </span>
                                 dengan berbagai pilihan Beasiswa
                             </h1>
                             <p class="support">
-                                <b>Insitut Digital Ekonimi (IDE LPKIA)</b> Lulusannya Mudah Bekerja dan Bersertifikasi
+                                <b>Insitut Digital Ekonomi (IDE LPKIA)</b> Lulusannya Mudah Bekerja dan Bersertifikasi
                                 Internasional
                             </p>
                             <p class="cta">
