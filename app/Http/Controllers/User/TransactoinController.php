@@ -80,7 +80,7 @@ class TransactoinController extends Controller
      */
     public function ppgStore(Store $request)
     {
-        return $request->all();
+        // return $request->all();
          // mapping request data
          $data = $request->all();
          $data['user_id'] = Auth::id();
@@ -111,7 +111,7 @@ class TransactoinController extends Controller
 
     public function ppaStore(StorePPA $request)
     {
-        return  $request->all();
+        // return  $request->all();
 
         // mapping request data
         $data = $request->all();      
@@ -162,8 +162,7 @@ class TransactoinController extends Controller
 
     public function ppaStoreUser(Store $request)
     {
-        return  $request->all();
-
+        // return  $request->all();
         // mapping request data
         $data = $request->all();       
         
@@ -196,8 +195,7 @@ class TransactoinController extends Controller
 
     public function pmmStore(Store $request)
     {
-        return $request->all();
-
+        // return $request->all();
          // mapping request data
          $data = $request->all();
          $data['user_id'] = Auth::id();

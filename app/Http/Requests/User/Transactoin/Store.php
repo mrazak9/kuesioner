@@ -26,11 +26,11 @@ class Store extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|email|unique:prospects,email',
             'phone' => 'required|numeric|digits_between:10,13|unique:prospects,phone',
-            'city' => 'required|string',
-            'school' => 'required|string',
+            'email' => 'required|email|unique:prospects,email',
             'address' => 'required|string',            
+            'school' => 'required|string',
+            'city' => 'required|string',
         ];
     }
 }

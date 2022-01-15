@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function(){
     // Transaction route
     Route::get('transaction/success',[UserTransaction::class, 'success'])->name('transaction.success');
     Route::get('transaction/ppa_user',[UserTransaction::class, 'createPpa'])->name('transaction.create.ppa_user')->middleware('ensureUserRole:alumni');
-    Route::post('transaction/ppa_user',[UserTransaction::class, 'ppaStore_user'])->name('transaction.store.ppa_user')->middleware('ensureUserRole:alumni');
+    Route::post('transaction/ppa_user',[UserTransaction::class, 'ppaStoreUser'])->name('transaction.store.ppa_user')->middleware('ensureUserRole:alumni');
     Route::get('transaction/pmm',[UserTransaction::class, 'createPmm'])->name('transaction.create.pmm')->middleware('ensureUserRole:student');
     Route::post('transaction/pmm',[UserTransaction::class, 'pmmStore'])->name('transaction.store.pmm')->middleware('ensureUserRole:student');
     Route::get('transaction/ppg',[UserTransaction::class, 'createPpg'])->name('transaction.create.ppg')->middleware('ensureUserRole:teacher');
@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function(){
 
     // Dashboard route
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin/view_user', [AdminDashboard::class, 'view'])->name('view_user')->middleware('ensureUserRole:admin');
     
     // User Dashboard
     Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){

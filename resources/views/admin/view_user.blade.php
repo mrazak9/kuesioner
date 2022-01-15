@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <a href="{{ route('view_user')}}" class="btn btn-primary" style="margin: 30px 0px 30px 0px">Lihat Data User</a>
+                <a href="{{ route('user.create')}}" class="btn btn-thirdty" style="margin: 30px 0px 30px 0px">Tambah User</a>
+                <a href="{{ route('admin.dashboard')}}" class="btn btn-primary" style="margin: 30px 0px 30px 0px">Lihat Dashboard Pengusul</a>
                 <div class="card">
                     <div class="card-header">
                         Data Usulan
@@ -22,12 +23,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($transactions as $trans)
+                                @forelse ($users as $user)
                                     <tr>
-                                        <td>{{$trans->prospect->name}}</td>
-                                        <td>{{$trans->user->name}}</td>
-                                        <td>{{$trans->route}}</td>
-                                        <td>{{$trans->status}}</td>
+                                        <td>{{$user->people->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->occupation}}</td>
+                                        <td>{{$user->people->phone}}</td>
                                         <td>
                                             <a href="#" class="btn btn-thirdty" style="font-size: x-small; padding: 5px 10px 5px 10px">View</a>
                                             <a href="#" class="btn btn-primary" style="font-size: x-small; padding: 5px 10px 5px 10px">Edit</a>

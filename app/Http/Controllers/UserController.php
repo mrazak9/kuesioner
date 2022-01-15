@@ -69,6 +69,7 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->occupation = $data['occupation'];
         $user->avatar = Auth::user()->avatar;
+        $user->email_verified_at = date('Y-m-d H:i:s', time());
         $user->people_id = $person->id;
         $user->is_admin = false;
         $user->save();
@@ -77,6 +78,6 @@ class UserController extends Controller
         //  $user = User::create($data);
         //  $this->getSnapRedirect($transaction);
 
-        return redirect(route('transaction.success')); 
+        return redirect(route('view_user')); 
     }
 }
