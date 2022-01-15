@@ -8,7 +8,7 @@
         <div class="right">
             <img src="{{ asset('images/logo.png') }}" class="logo" alt="">
             <h1 class="header-third">
-                Program Pratisipasi
+                Program Partisipasi
             </h1>
             <p class="subheader">
                 Silahkan login menggunakan email yang telah di daftarkan
