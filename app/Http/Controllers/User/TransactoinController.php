@@ -112,7 +112,6 @@ class TransactoinController extends Controller
     public function ppaStore(StorePPA $request)
     {
         // return  $request->all();
-
         // mapping request data
         $data = $request->all();      
  
@@ -132,6 +131,7 @@ class TransactoinController extends Controller
         $user->occupation = 'Alumni';
         $user->avatar = Auth::user()->avatar;
         $user->people_id = $person->id;
+        $user->email_verified_at = date('Y-m-d H:i:s', time());
         $user->save();
 
         $data['user_id'] = $user->id;
