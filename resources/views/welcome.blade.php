@@ -32,7 +32,12 @@
             </div>
             <div class="row brands">
                 <div class="col-lg-12 col-12 text-center">
-                    <img src="{{ asset('images/brands.png') }}" alt="">
+                    <img style="margin:20px 20px 0px 0px" src="{{ asset('images/microsoft.png') }}" alt="">
+                    <img style="margin:20px 20px 0px 0px" src="{{ asset('images/mikrotik.png') }}" alt="">
+                    <img style="margin:20px 20px 0px 0px" src="{{ asset('images/oracle.png') }}" alt="">
+                    <img style="margin:20px 20px 0px 0px" src="{{ asset('images/cisco.png') }}" alt="">
+                    <img style="margin:20px 20px 0px 0px" src="{{ asset('images/ibm.png') }}" alt="">
+                    <img style="margin:20px 20px 0px 0px" src="{{ asset('images/ets-toeic.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -135,22 +140,5 @@
             </div>
 
         </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-12">
-                    <div class="row copyright">
-                        <div class="col-lg-12 col-12">
-                            <p>
-                                All Rights Reserved. Copyright MIS IDE LPKIA 2022.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </section
 @endsection
