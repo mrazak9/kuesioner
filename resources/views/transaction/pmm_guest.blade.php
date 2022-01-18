@@ -23,8 +23,8 @@
                                     Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Selamat Datang di Program Mahasiswa Mandiri, mohon di pastikan bahwa ini adalah pertama kali anda mengimput data PPG.
-                                    jika anda pernah mengimput data sebelumnya silahkan untuk login dan tambahkan data PPG baru.
+                                    Selamat Datang di Program Mahasiswa Mandiri, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PMM.
+                                    jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PMM baru.
                                 </p>
                             </div>
                         </div>

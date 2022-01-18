@@ -6,7 +6,7 @@
             <div class="row text-center pb-70">
                 <div class="col-lg-12 col-12 header-wrap">
                     <p class="story">
-                        PPA
+                        PPG 2022
                     </p>
                     <h2 class="primary-header">
                         Program Partisipasi Guru
@@ -23,8 +23,8 @@
                                     Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Selamat Datang di Program Partisipasi Guru, mohon di pastikan bahwa ini adalah pertama kali anda mengimput data PPG.
-                                    jika anda pernah mengimput data sebelumnya silahkan untuk login dan tambahkan data PPG baru.
+                                    Selamat Datang di Program Partisipasi Guru, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPG.
+                                    jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPG baru.
                                 </p>
                             </div>
                         </div>
