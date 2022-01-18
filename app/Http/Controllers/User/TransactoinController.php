@@ -11,7 +11,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\Transactoin\store;
+use App\Http\Requests\User\Transactoin\StorePMM;
 use App\Http\Requests\User\Transactoin\StorePPA;
+use App\Http\Requests\User\Transactoin\StorePPG;
 
 class TransactoinController extends Controller
 {
@@ -43,7 +45,12 @@ class TransactoinController extends Controller
             $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
             return redirect(route('user.dashboard'));
         }
-        return view('transaction/ppg');
+
+        if (Auth::user()) {
+            return view('transaction/ppg');
+        }else {
+            return view('transaction/ppg_guest');
+        }  
     }
     public function createPpa(Request $request)
     {
@@ -69,7 +76,12 @@ class TransactoinController extends Controller
             $request->session()->flash('error',"Tidak dapat menambah data, karena Anda Telah memiliki data lebih dari 10");
             return redirect(route('user.dashboard'));
         }
-        return view('transaction/pmm');
+
+        if (Auth::user()) {
+            return view('transaction/pmm');
+        }else {
+            return view('transaction/pmm_guest');
+        }        
     }
 
     /**
@@ -109,6 +121,56 @@ class TransactoinController extends Controller
          return redirect(route('transaction.success'));
     }
 
+    public function ppgStore_guest(StorePPG $request)
+    {
+        // mapping request data
+        $data = $request->all();
+        
+        // return $data;
+ 
+        // create person 
+        $person = new People();
+        $person->name = $data['user_name'];
+        $person->phone = $data['user_phone'];
+        $person->school_origin = $data['school_origin'];
+        $person->id_user = $data['id_pic'];
+        $person->save();
+
+        // create user
+        $user = new User();
+        $user->name = $data['user_name'];
+        $user->email = $data['user_email'];
+        $user->occupation = 'Guru';
+        $user->people_id = $person->id;
+        $user->email_verified_at = date('Y-m-d H:i:s', time());
+        $user->save();
+
+        $data['user_id'] = $user->id;
+        $data['status'] = 'Di Ajukan';
+        $data['period'] = date ('Y');
+        $data['route']='PPG';
+            
+        // create prospect
+        $prospect = new Prospect();
+        $prospect->name = $data['name'];
+        $prospect->phone = $data['phone'];
+        $prospect->email = $data['email'];
+        $prospect->school = $data['school'];
+        $prospect->address = $data['address'];
+        $prospect->city = $data['city'];
+        $prospect->route = $data['route'];
+        $prospect->owner = $data['user_id'];
+        $prospect->save();
+
+        $data['prospect_id'] = $prospect->id;
+            
+        // create transaction
+        $transaction = Transaction::create($data);
+        //  $this->getSnapRedirect($transaction);
+
+        return redirect(route('transaction.success')); 
+    }
+
     public function ppaStore(StorePPA $request)
     {
         // return  $request->all();
@@ -129,7 +191,6 @@ class TransactoinController extends Controller
         $user->name = $data['user_name'];
         $user->email = $data['user_email'];
         $user->occupation = 'Alumni';
-        $user->avatar = Auth::user()->avatar;
         $user->people_id = $person->id;
         $user->email_verified_at = date('Y-m-d H:i:s', time());
         $user->save();
@@ -222,6 +283,55 @@ class TransactoinController extends Controller
         //  $this->getSnapRedirect($checkout);
 
          return redirect(route('transaction.success'));
+    }
+
+    public function pmmStore_guest(StorePMM $request)
+    {
+        // mapping request data
+        $data = $request->all();
+ 
+        // create person 
+        $person = new People();
+        $person->name = $data['user_name'];
+        $person->phone = $data['user_phone'];
+        $person->nim = $data['nim'];
+        $person->school_origin = $data['prodi_asal'];
+        $person->id_user = $data['id_wali'];
+        $person->save();
+
+        // create user
+        $user = new User();
+        $user->name = $data['user_name'];
+        $user->email = $data['user_email'];
+        $user->occupation = 'Mahasiswa';
+        $user->people_id = $person->id;
+        $user->email_verified_at = date('Y-m-d H:i:s', time());
+        $user->save();
+
+        $data['user_id'] = $user->id;
+        $data['status'] = 'Di Ajukan';
+        $data['period'] = date ('Y');
+        $data['route']='PMM';
+            
+        // create prospect
+        $prospect = new Prospect();
+        $prospect->name = $data['name'];
+        $prospect->phone = $data['phone'];
+        $prospect->email = $data['email'];
+        $prospect->school = $data['school'];
+        $prospect->address = $data['address'];
+        $prospect->city = $data['city'];
+        $prospect->route = $data['route'];
+        $prospect->owner = $data['user_id'];
+        $prospect->save();
+
+        $data['prospect_id'] = $prospect->id;
+            
+        // create transaction
+        $transaction = Transaction::create($data);
+        //  $this->getSnapRedirect($transaction);
+
+        return redirect(route('transaction.success')); 
     }
 
     /**

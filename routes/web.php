@@ -32,14 +32,16 @@ Route::get('auth/google/callback',[UserController::class, 'handleProviderCallbac
 
 // PPA Route
 Route::get('transaction/success',[UserTransaction::class, 'success'])->name('transaction.success');
-Route::post('transaction/ppa',[UserTransaction::class, 'ppaStore'])->name('transaction.store.ppa');
 Route::get('transaction/ppa',[UserTransaction::class, 'createPpa'])->name('transaction.create.ppa');
-
-
+Route::post('transaction/ppa',[UserTransaction::class, 'ppaStore'])->name('transaction.store.ppa');
+Route::get('transaction/pmm_guest',[UserTransaction::class, 'createPmm'])->name('transaction.create.pmm_guest');
+Route::post('transaction/pmm_guest',[UserTransaction::class, 'pmmStore_guest'])->name('transaction.store.pmm_guest');
+Route::get('transaction/ppg_guest',[UserTransaction::class, 'createppg'])->name('transaction.create.ppg_guest');
+Route::post('transaction/ppg_guest',[UserTransaction::class, 'ppgStore_guest'])->name('transaction.store.ppg_guest');
 
 Route::middleware(['auth'])->group(function(){
     // Transaction route
-    Route::get('transaction/success',[UserTransaction::class, 'success'])->name('transaction.success');
+    // Route::get('transaction/success',[UserTransaction::class, 'success'])->name('transaction.success');
     Route::get('transaction/ppa_user',[UserTransaction::class, 'createPpa'])->name('transaction.create.ppa_user')->middleware('ensureUserRole:alumni');
     Route::post('transaction/ppa_user',[UserTransaction::class, 'ppaStoreUser'])->name('transaction.store.ppa_user')->middleware('ensureUserRole:alumni');
     Route::get('transaction/pmm',[UserTransaction::class, 'createPmm'])->name('transaction.create.pmm')->middleware('ensureUserRole:student');

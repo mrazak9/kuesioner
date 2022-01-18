@@ -57,9 +57,21 @@
                         Dapatkan kelipatan Rp. 500.000 untuk setiap calon mahasiswa yang di daftarkan.
                     </p>
                     <p class="mt-5">
-                        <a href="{{ route('transaction.create.pmm') }}" class="btn btn-master btn-thirdty me-3">
-                            Input PMM
-                        </a>
+                        @if (Auth::user())
+                            @if (Auth::user()->occupation == 'Mahasiswa')
+                                <a href="{{ route('transaction.create.pmm') }}" class="btn btn-master btn-thirdty me-3">
+                                    Input PMM
+                                </a>
+                            @elseif (Auth::user()->occupation != 'Mahasiswa')
+                                {{-- <a href="{{ route('home') }}" class="btn btn-master btn-primary w-100 mt-3">
+                                    Input PMM
+                                </a> --}}
+                            @endif
+                        @else
+                            <a href="{{ route('transaction.create.pmm_guest') }}" class="btn btn-master btn-thirdty me-3">
+                                Input PMM
+                            </a>
+                        @endif
                     </p>
                 </div>
                 <div class="col-lg-7 col-12">
@@ -90,10 +102,16 @@
                                 </div>
                                 <p>
                                     @if (Auth::user())
-                                        <a href="{{ route('transaction.create.ppa_user') }}"
-                                            class="btn btn-master btn-primary w-100 mt-3">
-                                            Input PPA
-                                        </a>
+                                        @if (Auth::user()->occupation == 'Alumni')
+                                            <a href="{{ route('transaction.create.ppa_user') }}"
+                                                class="btn btn-master btn-primary w-100 mt-3">
+                                                Input PPA
+                                            </a>
+                                        @elseif (Auth::user()->occupation != 'Alumni')
+                                            {{-- <a href="{{ route('home') }}" class="btn btn-master btn-primary w-100 mt-3">
+                                                Input PPA
+                                            </a> --}}
+                                        @endif
                                     @else
                                         <a href="{{ route('transaction.create.ppa') }}"
                                             class="btn btn-master btn-primary w-100 mt-3">
@@ -128,10 +146,24 @@
                                     <div class="divider"></div>
                                 </div>
                                 <p>
-                                    <a href="{{ route('transaction.create.ppg') }}"
-                                        class="btn btn-master btn-primary w-100 mt-3">
-                                        Input PPG
-                                    </a>
+                                    @if (Auth::user())
+                                        @if (Auth::user()->occupation == 'Guru')
+                                            <a href="{{ route('transaction.create.ppg') }}"
+                                                class="btn btn-master btn-primary w-100 mt-3">
+                                                Input PPG
+                                            </a>
+                                        @elseif (Auth::user()->occupation != 'Guru')
+                                            {{-- <a href="{{ route('home') }}" class="btn btn-master btn-primary w-100 mt-3">
+                                                Input PPG
+                                            </a> --}}
+                                        @endif
+                                    @else
+                                        <a href="{{ route('transaction.create.ppg_guest') }}"
+                                            class="btn btn-master btn-primary w-100 mt-3">
+                                            Input PPG
+                                        </a>
+                                    @endif
+
                                 </p>
                             </div>
                         </div>
@@ -140,5 +172,4 @@
             </div>
 
         </div>
-    </section
-@endsection
+</section @endsection
