@@ -28,7 +28,7 @@ class EnsureUserRole
         $user = Auth::user();
         if (($role == 'admin' && $user->is_admin) || ($role == 'user' && !$user->is_admin)) {
             return $next($request);
-        } elseif (($role == 'student' && $user->occupation=="Mahasiswa") || ($role == 'teacher' && $user->occupation=='Guru') || ($role == 'alumni' && $user->occupation == "Alumni")){
+        } elseif (($role == 'student' && $user->occupation=="Mahasiswa") || ($role == 'teacher' && $user->occupation=='Guru') || ($role == 'alumni' && $user->occupation == "Alumni") || ($role == 'dosen' && $user->occupation == "Dosen")){
             return $next($request);
         } else {
             return redirect('/');
