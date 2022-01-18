@@ -6,7 +6,7 @@
             <div class="row text-center pb-70">
                 <div class="col-lg-12 col-12 header-wrap">
                     <p class="story">
-                        PPA
+                        PPA 2022
                     </p>
                     <h2 class="primary-header">
                         Program Partisipasi Alumni
@@ -20,12 +20,11 @@
                             <div class="item-bootcamp">
                                 <img src="{{ asset('images/item_bootcamp.png') }}" alt="" class="cover">
                                 <h1 class="package text-uppercase">
-                                    PPA 2022
+                                    Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Pastikan Calon mahasiswa yang di daftarkan belum mendaftar melalui
-                                    program apapun jika terjadi duplikat data, maka data yang terakhir di tambahkan akan di
-                                    hapus.
+                                    Selamat Datang di Program Partisipasi Alumni, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPA.
+                                    jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPA baru.
                                 </p>
                             </div>
                         </div>
