@@ -54,7 +54,7 @@
                         PMM 2022
                     </h2>
                     <p class="support">
-                        Dapatkan kelipatan Rp. 500.000 untuk setiap calon mahasiswa yang di daftarkan.
+                        Khusus Mahasiswa Aktif LPKIA! Dapatkan kesempatan meraih potongan biaya kuliah dengan mengikuti program PMM.
                     </p>
                     <p class="mt-5">
                         @if (Auth::user())
@@ -87,7 +87,7 @@
                                 <div class="item-benefit-pricing mb-4">
                                     <img src="{{ asset('images/ic_check.svg') }}" alt="">
                                     <p>
-                                        500K/siswa Regis
+                                        Khusus Alumni LPKIA
                                     </p>
                                     <div class="clear"></div>
                                     <div class="divider"></div>
@@ -95,7 +95,7 @@
                                 <div class="item-benefit-pricing mb-4">
                                     <img src="{{ asset('images/ic_check.svg') }}" alt="">
                                     <p>
-                                        Khusus Alumni LPKIA
+                                        Tahun lulus tidak dibatasi
                                     </p>
                                     <div class="clear"></div>
                                     <div class="divider"></div>
@@ -132,7 +132,7 @@
                                 <div class="item-benefit-pricing mb-4">
                                     <img src="{{ asset('images/ic_check.svg') }}" alt="">
                                     <p>
-                                        500K/siswa Regis
+                                        Untuk Guru SMA/SMK Sederajat
                                     </p>
                                     <div class="clear"></div>
                                     <div class="divider"></div>
@@ -140,7 +140,7 @@
                                 <div class="item-benefit-pricing mb-4">
                                     <img src="{{ asset('images/ic_check.svg') }}" alt="">
                                     <p>
-                                        Khusus Guru sekolah yang telah melakukan Kerjasama
+                                        Guru sekolah yang telah melakukan Kerjasama
                                     </p>
                                     <div class="clear"></div>
                                     <div class="divider"></div>
