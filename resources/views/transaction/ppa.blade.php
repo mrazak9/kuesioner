@@ -23,7 +23,7 @@
                                     Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Selamat Datang di Program Partisipasi Alumni, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPA.
+                                    Selamat Datang di Program Partisipasi Alumni, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPA 2022.
                                     jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPA baru.
                                 </p>
                             </div>
