@@ -25,7 +25,7 @@ class StorePMM extends FormRequest
     {
         return [
             'user_name' => 'required|string',
-            'user_email' => 'required|email|unique:users,email',
+            'user_email' => 'required|email|regex:/(.*)@fellow\.lpkia\.ac\.id$/i|unique:users,email',
             'user_phone' => 'required|numeric|digits_between:10,13|unique:people,phone',
             'nim' => 'required|numeric|digits_between:7,10|unique:people,nim',
             'prodi_asal' => 'required|string',
