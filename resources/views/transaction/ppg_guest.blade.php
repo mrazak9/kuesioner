@@ -46,7 +46,7 @@
                                     @endif
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Email Google (Gmail)</label>
                                     <input name='user_email' type="text"
                                         class="form-control {{ $errors->has('user_email') ? 'is-invalid' : '' }}"
                                         value="{{ old('user_email') }}" required />
