@@ -10,13 +10,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link"  href="#">Program Beasiswa</a>
+                    <a class="nav-link" target="blank" href="https://lpkia.ac.id/beasiswa-lpkia/">Program Beasiswa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Program Partisipasi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">PPA</a>
+                    <a class="nav-link" target="blank" href="https://drive.google.com/file/d/1d4447Z6QKEdoNNSI75HJLrMxwplLcclm/view">Panduan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontak</a>
