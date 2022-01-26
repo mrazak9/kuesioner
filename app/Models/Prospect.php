@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Wildside\Userstamps\Userstamps;
 
@@ -25,4 +26,10 @@ class Prospect extends Model
         'is_test',
         'is_pay_regist',
     ];
+
+    /**
+     * Get the Trans that owns the Prospect
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
 }

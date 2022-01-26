@@ -48,7 +48,10 @@ Route::middleware(['auth'])->group(function(){
     Route::post('transaction/pmm',[UserTransaction::class, 'pmmStore'])->name('transaction.store.pmm')->middleware('ensureUserRole:student');
     Route::get('transaction/ppg',[UserTransaction::class, 'createPpg'])->name('transaction.create.ppg')->middleware('ensureUserRole:teacher');
     Route::post('transaction/ppg',[UserTransaction::class, 'ppgStore'])->name('transaction.store.ppg')->middleware('ensureUserRole:teacher');
-
+    
+    // remove
+    Route::get('transaction/remove/{prospect_id}',[UserTransaction::class, 'destroy'])->name('transaction.remove')->middleware('ensureUserRole:admin');
+    
     // add users
     Route::get('user/create',[UserController::class, 'create'])->name('user.create')->middleware('ensureUserRole:admin');
     Route::post('user/create',[UserController::class, 'store'])->name('user.store')->middleware('ensureUserRole:admin');

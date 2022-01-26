@@ -374,9 +374,20 @@ class TransactoinController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy($prospect_id, Transaction $transaction)
     {
-        //
+
+        $getTransaction = Transaction::where('prospect_id', $prospect_id)->get();
+        $prospect = Prospect:: find($prospect_id);
+        $tranId = $getTransaction[0]['id'];
+        $transaction = Transaction:: find($tranId);
+            
+    	
+        // return $transaction;
+        $prospect->delete();
+        $transaction->delete();
+
+    	return redirect('/admin/dashboard');
     }
 
     public function success()
