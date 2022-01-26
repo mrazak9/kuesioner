@@ -19,7 +19,7 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form method="POST" action="{{ route('login') }}">
+            {{-- <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <!-- Email Address -->
                 <div class="mb-4">
@@ -53,7 +53,7 @@
                         </a>
                     @endif
                 </div>
-            </form>
+            </form> --}}
             <div style="text-align: center;">
                 <a class="btn btn-border btn-google-login" href="{{ route('user.login.google') }}">
                     <img src="{{ asset('images/ic_google.svg') }}" class="icon" alt=""> Sign In with Google
