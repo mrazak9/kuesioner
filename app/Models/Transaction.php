@@ -10,7 +10,7 @@ use Wildside\Userstamps\Userstamps;
 
 class Transaction extends Model
 {
-    use HasFactory;
+    use HasFactory, Userstamps, SoftDeletes;
 
     protected $fillable = [
         'user_id',

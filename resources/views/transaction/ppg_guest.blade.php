@@ -23,7 +23,7 @@
                                     Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Selamat Datang di Program Partisipasi Guru, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPG.
+                                    Selamat Datang di Program Partisipasi Guru, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPG 2022.
                                     jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPG baru.
                                 </p>
                             </div>

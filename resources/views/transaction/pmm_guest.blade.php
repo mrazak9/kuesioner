@@ -23,7 +23,7 @@
                                     Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Selamat Datang di Program Mahasiswa Mandiri, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PMM.
+                                    Selamat Datang di Program Mahasiswa Mandiri, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PMM 2022.
                                     jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PMM baru.
                                 </p>
                             </div>
