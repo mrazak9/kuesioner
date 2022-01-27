@@ -50,7 +50,6 @@ class UserController extends Controller
 
     public function store(Store $request)
     {
-        // return  $request->all();
         // mapping request data
         $data = $request->all();      
  
@@ -60,7 +59,6 @@ class UserController extends Controller
         $person->nim = $data['nim'];
         $person->phone = $data['phone'];
         $person->school_origin = $data['prodi_asal'];
-        $person->graduation_year = $data['year'];
         $person->save();
 
         // create user

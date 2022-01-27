@@ -18,6 +18,7 @@ class Transaction extends Model
         'status',
         'period',
         'route',
+        'wali_id',
     ];
 
     public function Prospect(): BelongsTo

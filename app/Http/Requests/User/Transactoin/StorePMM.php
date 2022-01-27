@@ -29,7 +29,7 @@ class StorePMM extends FormRequest
             'user_phone' => 'required|numeric|digits_between:10,13|unique:people,phone',
             'nim' => 'required|numeric|digits_between:7,10|unique:people,nim',
             'prodi_asal' => 'required|string',
-            'id_wali' => 'required|numeric',
+            'wali_id' => 'required|numeric',
             'name' => 'required|string',
             'phone' => 'required|numeric|digits_between:10,13|unique:prospects,phone',
             'email' => 'required|email|unique:prospects,email',

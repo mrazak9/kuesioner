@@ -61,8 +61,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('admin/view_user', [AdminDashboard::class, 'view'])->name('view_user')->middleware('ensureUserRole:admin');
     
     // User Dashboard
-    Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){
-        Route::get('/',[UserDashboard::class, 'index'])->name('dashboard');
+    Route::prefix('user/')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){
+        Route::get('dashboard/',[UserDashboard::class, 'index'])->name('dashboard');
+        Route::get('dashboard_dosen',[UserDashboard::class, 'index'])->name('dashboard_dosen');
     });
 
     // Admin dashboard

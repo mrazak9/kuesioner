@@ -29,7 +29,6 @@ class Store extends FormRequest
             'phone' => 'required|numeric|digits_between:10,13|unique:people,phone',
             'nim' => 'required|numeric|digits_between:7,10|unique:people,nim',
             'prodi_asal' => 'required|string',
-            'year' => 'required|numeric|digits:4',
             'occupation' => 'required|string',
         ];
     }

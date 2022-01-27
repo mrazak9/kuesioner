@@ -89,12 +89,12 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Dosen Wali</label>
-                                    <select name="id_wali" type="text"
+                                    <select name="wali_id" type="text"
                                         class="form-control select2
-                                    {{ $errors->has('id_wali') ? 'is-invalid' : '' }}"
-                                        value="{{ old('id_wali') }}" required>
-                                        @if ($errors->has('id_wali'))
-                                            <p class="text-danger">{{ $errors->first('id_wali') }}</p>
+                                    {{ $errors->has('wali_id') ? 'is-invalid' : '' }}"
+                                        value="{{ old('wali_id') }}" required>
+                                        @if ($errors->has('wali_id'))
+                                            <p class="text-danger">{{ $errors->first('wali_id') }}</p>
                                         @endif
                                         <option value=''> -- Pilih Dosen Wali -- </option>
                                         {{-- prodi mi --}}
