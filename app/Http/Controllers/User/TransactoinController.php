@@ -77,9 +77,10 @@ class TransactoinController extends Controller
             return redirect(route('user.dashboard'));
         }
 
-        if (Auth::user()) {
+        if (Auth::user()) {           
             return view('transaction/pmm');
         }else {
+            
             return view('transaction/pmm_guest');
         }        
     }
@@ -92,13 +93,14 @@ class TransactoinController extends Controller
      */
     public function ppgStore(Store $request)
     {
-        // return $request->all();
+        $getUser = People:: findorFail(Auth::id());
          // mapping request data
          $data = $request->all();
          $data['user_id'] = Auth::id();
          $data['status'] = 'Di Ajukan';
          $data['period'] = date ('Y');
          $data['route']='PPG';
+         $data['wali_id']=$getUser->id_user;
          
          // create prospect
          $prospect = new Prospect();
@@ -125,15 +127,13 @@ class TransactoinController extends Controller
     {
         // mapping request data
         $data = $request->all();
-        
-        // return $data;
- 
+
         // create person 
         $person = new People();
         $person->name = $data['user_name'];
         $person->phone = $data['user_phone'];
         $person->school_origin = $data['school_origin'];
-        $person->id_user = $data['id_pic'];
+        $person->id_user = $data['wali_id'];
         $person->save();
 
         // create user
@@ -256,13 +256,15 @@ class TransactoinController extends Controller
 
     public function pmmStore(Store $request)
     {
-        // return $request->all();
+
+         $getUser = People:: findorFail(Auth::id());
          // mapping request data
          $data = $request->all();
          $data['user_id'] = Auth::id();
          $data['status'] = 'Di Ajukan';
          $data['period'] = date ('Y');
          $data['route']='PMM';
+         $data['wali_id']=$getUser->id_user;
          
          // create prospect
          $prospect = new Prospect();
@@ -296,7 +298,7 @@ class TransactoinController extends Controller
         $person->phone = $data['user_phone'];
         $person->nim = $data['nim'];
         $person->school_origin = $data['prodi_asal'];
-        $person->id_user = $data['id_wali'];
+        $person->id_user = $data['wali_id'];
         $person->save();
 
         // create user

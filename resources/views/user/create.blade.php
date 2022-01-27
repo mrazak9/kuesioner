@@ -64,18 +64,9 @@
                                         <option value='AB'> Administrasi Bisnis</option>
                                         <option value='KA'> Komputer Akuntansi</option>
                                     </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tahun Lulus</label>
-                                    <input name='year' type="number"
-                                        class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}"
-                                        value="{{ old('year') }}" required />
-                                    @if ($errors->has('year'))
-                                        <p class="text-danger">{{ $errors->first('year') }}</p>
-                                    @endif
-                                </div>
+                                </div>                                
                                 <div class="mb-4">
-                                    <label class="form-label">Program Partisipasi</label>
+                                    <label class="form-label">Pilih Role</label>
                                     <select name="occupation" type="text"
                                         class="form-control select2{{ $errors->has('occupation') ? 'is-invalid' : '' }}"
                                         value="{{ old('occupation') }}" required>

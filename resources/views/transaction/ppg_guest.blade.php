@@ -74,17 +74,18 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">PIC dari LPKIA</label>
-                                    <select name="id_pic" type="text"
+                                    <select name="wali_id" type="text"
                                         class="form-control select2
-                                    {{ $errors->has('id_pic') ? 'is-invalid' : '' }}"
-                                        value="{{ old('id_pic') }}" required>
-                                        @if ($errors->has('id_pic'))
-                                            <p class="text-danger">{{ $errors->first('id_pic') }}</p>
+                                    {{ $errors->has('wali_id') ? 'is-invalid' : '' }}"
+                                        value="{{ old('wali_id') }}" required>
+                                        @if ($errors->has('wali_id'))
+                                            <p class="text-danger">{{ $errors->first('wali_id') }}</p>
                                         @endif
                                         <option value=''> -- Pilih PIC Kerjasama -- </option>
-                                        <option value=2> Neng Susi</option>
-                                        <option value=3> Atep Aulia </option>
+                                        <option value=2> Atep Aulia </option>
+                                        <option value=3> Neng Susi</option>
                                         <option value=4> Wahyu Nurjaya</option>
+                                        <option value=0> Lainnya</option>
                                     </select>
                                 </div>
                                 <br>

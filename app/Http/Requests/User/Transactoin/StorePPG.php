@@ -24,7 +24,17 @@ class StorePPG extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_name' => 'required|string',
+            'user_email' => 'required|email|unique:users,email',
+            'user_phone' => 'required|numeric|digits_between:10,13|unique:people,phone',
+            'school_origin' => 'required|string',
+            'wali_id' => 'required|numeric',
+            'name' => 'required|string',
+            'phone' => 'required|numeric|digits_between:10,13|unique:prospects,phone',
+            'email' => 'required|email|unique:prospects,email',
+            'address' => 'required|string',            
+            'school' => 'required|string',
+            'city' => 'required|string',
         ];
     }
 }
