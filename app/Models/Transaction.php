@@ -34,4 +34,14 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the wali that owns the Transaction
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function wali(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'wali_id', 'id');
+    }
 }

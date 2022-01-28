@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-8 offset-2">
+            <div class="col-12">
                 <a href="{{ route('view_user') }}" class="btn btn-primary" style="margin: 30px 0px 30px 0px">Lihat Data
                     User</a>
                 <div class="card">
@@ -18,7 +18,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>No. HP</th>
+                                    <th>Email</th>
+                                    <th>Asal Sekolah</th>
                                     <th>Pengusul</th>
+                                    <th>Wali/PIC</th>
                                     <th>Jalur</th>
                                     <th>Status</th>
                                     <th>action</th>
@@ -29,7 +33,11 @@
                                     <tr>
                                         <td>{{ $tmp++ }}</td>
                                         <td>{{ $trans->prospect->name }}</td>
+                                        <td>{{ $trans->prospect->phone }}</td>
+                                        <td>{{ $trans->prospect->email }}</td>
+                                        <td>{{ $trans->prospect->school }}</td>
                                         <td>{{ $trans->user->name }}</td>
+                                        <td>{{ $trans->wali->name }}</td>
                                         <td>{{ $trans->route }}</td>
                                         <td>{{ $trans->status }}</td>
                                         <td>
