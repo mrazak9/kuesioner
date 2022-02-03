@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function(){
     // Dashboard route
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('admin/view_user', [AdminDashboard::class, 'view'])->name('view_user')->middleware('ensureUserRole:admin');
+    Route::get('admin/update_prospect/{transId}', [UserTransaction::class, 'show'])->name('transaction.show')->middleware('ensureUserRole:admin');
+    Route::post('admin/update_prospect/{transId}', [UserTransaction::class, 'edit'])->name('transaction.edit')->middleware('ensureUserRole:admin');
     
     // User Dashboard
     Route::prefix('user/')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){

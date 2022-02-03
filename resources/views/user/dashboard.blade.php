@@ -9,7 +9,7 @@
                         DASHBOARD User
                     </p>
                     <h2 class="primary-header ">
-                        Data {{$data}} Saya 
+                        Data {{ $data }} Saya
                     </h2>
                 </div>
             </div>
@@ -22,46 +22,50 @@
                             <td><strong>Asal Sekolah</strong> </td>
                             <td><strong>No. HP</strong></td>
                             <td><strong>Email</strong></td>
-                            <td><strong>Status</strong></td>                            
-                            <td><strong>Deposit</strong></td>                            
+                            <td><strong>Status</strong></td>
+                            <td><strong>Deposit</strong></td>
                         </tr>
-                        <tr><td></td></tr>
+                        <tr>
+                            <td></td>
+                        </tr>
                         @forelse ($transactions as $transaction)
                             <tr class="align-middle">
                                 <td>
                                     <p class="mb-2">
-                                        <strong>{{$transaction->prospect->name}}</strong>
+                                        <strong>{{ $transaction->prospect->name }}</strong>
                                     </p>
                                     <p>
-                                        {{$transaction->created_at->format('M d, Y')}}
+                                        {{ $transaction->created_at->format('M d, Y') }}
                                     </p>
                                 </td>
                                 <td>
-                                    <strong>{{$transaction->prospect->school}}</strong>
+                                    <strong>{{ $transaction->prospect->school }}</strong>
                                 </td>
                                 <td>
-                                    <strong>{{$transaction->prospect->phone}}</strong>
+                                    <strong>{{ $transaction->prospect->phone }}</strong>
                                 </td>
                                 <td>
-                                    <strong>{{$transaction->prospect->email}}</strong>
-                                </td>                                                                
+                                    <strong>{{ $transaction->prospect->email }}</strong>
+                                </td>
                                 <td>
-                                    @if ($transaction->prospect->is_iput_form && !$transaction->prospect->is_test)
+                                    @if ($transaction->prospect->is_iput_form && !$transaction->prospect->is_pay_form)
                                         <strong>Sudah Mengisi Form</strong>
+                                    @elseif ($transaction->prospect->is_pay_form && !$transaction->prospect->is_test)
+                                        <strong>Berhak Test</strong>
                                     @elseif ($transaction->prospect->is_test && !$transaction->prospect->is_pay_regist)
                                         <strong>Sudah Melakukan Test</strong>
                                     @elseif ($transaction->prospect->is_pay_regist)
                                         <strong class="text-success">Sudah melakukan Registrasi</strong>
                                     @else
-                                        <strong>{{$transaction->status}}</strong>
-                                    @endif                                    
+                                        <p>{{ $transaction->status }}</p>
+                                    @endif
                                 </td>
                                 <td>
                                     @if ($transaction->prospect->is_pay_regist)
                                         <strong class="text-success">Rp. 500.000</strong>
                                     @else
                                         <strong>Rp. 0</strong>
-                                    @endif                                    
+                                    @endif
                                 </td>
                             </tr>
                         @empty

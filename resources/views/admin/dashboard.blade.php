@@ -40,20 +40,22 @@
                                         <td>{{ $trans->wali->name }}</td>
                                         <td>{{ $trans->route }}</td>
                                         <td>
-                                            @if ($trans->prospect->is_iput_form && !$trans->prospect->is_test)
+                                            @if ($trans->prospect->is_iput_form && !$trans->prospect->is_pay_form)
                                                 <strong>Sudah Mengisi Form</strong>
+                                            @elseif ($trans->prospect->is_pay_form && !$trans->prospect->is_test)
+                                                <strong>Berhak Test</strong>
                                             @elseif ($trans->prospect->is_test && !$trans->prospect->is_pay_regist)
                                                 <strong>Sudah Melakukan Test</strong>
                                             @elseif ($trans->prospect->is_pay_regist)
                                                 <strong class="text-success">Sudah melakukan Registrasi</strong>
                                             @else
-                                                <strong>{{ $trans->status }}</strong>
+                                                <p>{{ $trans->status }}</p>
                                             @endif
                                         </td>
                                         <td>
                                             <a href="#" class="btn btn-thirdty"
                                                 style="font-size: x-small; padding: 5px 10px 5px 10px">View</a>
-                                            <a href="#" class="btn btn-primary"
+                                            <a href="{{ route('transaction.show', $trans->id)}}" class="btn btn-primary"
                                                 style="font-size: x-small; padding: 5px 10px 5px 10px">Edit</a>
                                             <a data-toggle="modal" class="btn btn-delete"
                                                 style="font-size: x-small; padding: 5px 10px 5px 10px"
