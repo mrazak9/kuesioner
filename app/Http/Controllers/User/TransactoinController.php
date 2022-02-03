@@ -342,9 +342,16 @@ class TransactoinController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show($transId)
     {
-        //
+        // $transaction = Transaction:: findorFail($transId);
+        $trans = Transaction::with('Prospect')->Where('id', $transId)->get();
+        // return $transaction->first();
+        return view('admin/update_prospect',[
+            'trans' => $trans->first(),
+        ]);
+
+        // return $trans;
     }
 
     /**
@@ -353,9 +360,30 @@ class TransactoinController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction $transaction)
+    public function edit($transId, Request $request, Transaction $transaction)
     {
-        //
+        // mapping request data
+        $data = $request->all();
+        
+        $prospect = Prospect:: findorFail($transId);
+        $prospect->name = $data['name'];
+        $prospect->phone = $data['phone'];
+        $prospect->email = $data['email'];
+        $prospect->address = $data['address'];
+        $prospect->school = $data['school'];
+        $prospect->city = $data['city'];
+        $prospect->id_registrant = $data['id_registrant'];
+        $prospect->is_iput_form = $data['is_iput_form'];
+        $prospect->is_pay_form = $data['is_pay_form'];
+        $prospect->is_test = $data['is_test'];
+        $prospect->is_pay_regist = $data['is_pay_regist'];
+        $prospect->save();
+
+        // Send Email to User
+        // Mail::to($checkout->User->email)->send(new Paid($checkout));
+
+        $request->session()->flash('success', "Prospect with ID {$prospect->id} has been updated");
+        return redirect(route('admin.dashboard'));
     }
 
     /**

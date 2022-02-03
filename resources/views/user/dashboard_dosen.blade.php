@@ -35,14 +35,16 @@
                                         <td>{{ $trans->prospect->phone }}</td>
                                         <td>{{ $trans->prospect->email }}</td>
                                         <td>
-                                            @if ($trans->prospect->is_iput_form && !$trans->prospect->is_test)
+                                            @if ($trans->prospect->is_iput_form && !$trans->prospect->is_pay_form)
                                                 <strong>Sudah Mengisi Form</strong>
+                                            @elseif ($trans->prospect->is_pay_form && !$trans->prospect->is_test)
+                                                <strong>Berhak Test</strong>
                                             @elseif ($trans->prospect->is_test && !$trans->prospect->is_pay_regist)
                                                 <strong>Sudah Melakukan Test</strong>
                                             @elseif ($trans->prospect->is_pay_regist)
                                                 <strong class="text-success">Sudah melakukan Registrasi</strong>
                                             @else
-                                                <strong>{{ $trans->status }}</strong>
+                                                <p>{{ $trans->status }}</p>
                                             @endif
                                         </td>
                                     </tr>
