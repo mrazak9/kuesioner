@@ -39,7 +39,17 @@
                                         <td>{{ $trans->user->name }}</td>
                                         <td>{{ $trans->wali->name }}</td>
                                         <td>{{ $trans->route }}</td>
-                                        <td>{{ $trans->status }}</td>
+                                        <td>
+                                            @if ($trans->prospect->is_iput_form && !$trans->prospect->is_test)
+                                                <strong>Sudah Mengisi Form</strong>
+                                            @elseif ($trans->prospect->is_test && !$trans->prospect->is_pay_regist)
+                                                <strong>Sudah Melakukan Test</strong>
+                                            @elseif ($trans->prospect->is_pay_regist)
+                                                <strong class="text-success">Sudah melakukan Registrasi</strong>
+                                            @else
+                                                <strong>{{ $trans->status }}</strong>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="#" class="btn btn-thirdty"
                                                 style="font-size: x-small; padding: 5px 10px 5px 10px">View</a>
