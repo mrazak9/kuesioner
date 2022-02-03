@@ -10,7 +10,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\User\Transactoin\store;
+use App\Http\Requests\User\Transactoin\Store;
 use App\Http\Requests\User\Transactoin\StorePMM;
 use App\Http\Requests\User\Transactoin\StorePPA;
 use App\Http\Requests\User\Transactoin\StorePPG;
