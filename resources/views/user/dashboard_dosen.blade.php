@@ -34,7 +34,17 @@
                                         <td>{{ $trans->prospect->school }}</td>
                                         <td>{{ $trans->prospect->phone }}</td>
                                         <td>{{ $trans->prospect->email }}</td>
-                                        <td>{{ $trans->status }}</td>
+                                        <td>
+                                            @if ($trans->prospect->is_iput_form && !$trans->prospect->is_test)
+                                                <strong>Sudah Mengisi Form</strong>
+                                            @elseif ($trans->prospect->is_test && !$trans->prospect->is_pay_regist)
+                                                <strong>Sudah Melakukan Test</strong>
+                                            @elseif ($trans->prospect->is_pay_regist)
+                                                <strong class="text-success">Sudah melakukan Registrasi</strong>
+                                            @else
+                                                <strong>{{ $trans->status }}</strong>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <p hidden>{{ $tmp = null }}</p>
@@ -43,7 +53,7 @@
                                     </tr>
                                 @endforelse
                             </tbody>
-                        </table>                        
+                        </table>
                     </div>
                 </div>
             </div>
