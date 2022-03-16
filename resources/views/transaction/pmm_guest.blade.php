@@ -99,9 +99,11 @@
                                         <option value=''> -- Pilih Dosen Wali -- </option>
                                         {{-- prodi mi --}}
                                         <option value= 7 > Andy Victor</option>
-                                        <option value= 2 > Atep Aulia Rahman</option>
+                                        <!-- <option value= 2 > Atep Aulia Rahman</option> -->
                                         <option value= 6 > Bakti Bestin</option>
-                                        <option value= 5 > Rudy Sofian</option>
+                                        <option value= 33 > Fahmi Reza Ferdiansyah</option>
+                                        <option value= 32 > Sihar N M P Simamora</option>
+                                        <!-- <option value= 5 > Rudy Sofian</option> -->
                                         {{-- prodi ab --}}
                                         <option value= 11 > Deden Sofyan Hamdani</option>
                                         <option value= 8 > Tjang Kian Liong</option>
