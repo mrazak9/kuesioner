@@ -37,7 +37,7 @@
                                         <td>{{ $trans->prospect->email }}</td>
                                         <td>{{ $trans->prospect->school }}</td>
                                         <td>{{ $trans->user->name }}</td>
-                                        <td>{{ $trans->wali->name }}</td>
+                                        <td>{{ $trans->wali->name ?? ''}}</td>
                                         <td>{{ $trans->route }}</td>
                                         <td>
                                             @if ($trans->prospect->is_iput_form && !$trans->prospect->is_pay_form)
