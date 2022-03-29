@@ -34,7 +34,7 @@ class TransactoinController extends Controller
      */
     public function create()
     {
-        
+
     }
     public function createPpg(Request $request)
     {
@@ -50,7 +50,7 @@ class TransactoinController extends Controller
             return view('transaction/ppg');
         }else {
             return view('transaction/ppg_guest');
-        }  
+        }
     }
     public function createPpa(Request $request)
     {
@@ -77,12 +77,12 @@ class TransactoinController extends Controller
             return redirect(route('user.dashboard'));
         }
 
-        if (Auth::user()) {           
+        if (Auth::user()) {
             return view('transaction/pmm');
         }else {
-            
+
             return view('transaction/pmm_guest');
-        }        
+        }
     }
 
     /**
@@ -101,7 +101,7 @@ class TransactoinController extends Controller
          $data['period'] = date ('Y');
          $data['route']='PPG';
          $data['wali_id']=$getUser->id_user;
-         
+
          // create prospect
          $prospect = new Prospect();
          $prospect->name = $data['name'];
@@ -115,7 +115,7 @@ class TransactoinController extends Controller
          $prospect->save();
 
          $data['prospect_id'] = $prospect->id;
-         
+
          // create checkout
          $checkout = Transaction::create($data);
         //  $this->getSnapRedirect($checkout);
@@ -128,7 +128,7 @@ class TransactoinController extends Controller
         // mapping request data
         $data = $request->all();
 
-        // create person 
+        // create person
         $person = new People();
         $person->name = $data['user_name'];
         $person->phone = $data['user_phone'];
@@ -149,7 +149,7 @@ class TransactoinController extends Controller
         $data['status'] = 'Di Ajukan';
         $data['period'] = date ('Y');
         $data['route']='PPG';
-            
+
         // create prospect
         $prospect = new Prospect();
         $prospect->name = $data['name'];
@@ -163,21 +163,21 @@ class TransactoinController extends Controller
         $prospect->save();
 
         $data['prospect_id'] = $prospect->id;
-            
+
         // create transaction
         $transaction = Transaction::create($data);
         //  $this->getSnapRedirect($transaction);
 
-        return redirect(route('transaction.success')); 
+        return redirect(route('transaction.success'));
     }
 
     public function ppaStore(StorePPA $request)
     {
         // return  $request->all();
         // mapping request data
-        $data = $request->all();      
- 
-        // create person 
+        $data = $request->all();
+
+        // create person
         $person = new People();
         $person->name = $data['user_name'];
         $person->nim = $data['nim'];
@@ -199,7 +199,7 @@ class TransactoinController extends Controller
         $data['status'] = 'Di Ajukan';
         $data['period'] = date ('Y');
         $data['route']='PPA';
-            
+
         // create prospect
         $prospect = new Prospect();
         $prospect->name = $data['name'];
@@ -208,30 +208,30 @@ class TransactoinController extends Controller
         $prospect->school = $data['school'];
         $prospect->address = $data['address'];
         $prospect->city = $data['city'];
-        $prospect->route = 'PPG';
+        $prospect->route = 'PPA';
         $prospect->owner = $data['user_id'];
         $prospect->save();
 
         $data['prospect_id'] = $prospect->id;
-            
+
         // create transaction
         $transaction = Transaction::create($data);
         //  $this->getSnapRedirect($transaction);
 
-        return redirect(route('transaction.success')); 
+        return redirect(route('transaction.success'));
     }
 
     public function ppaStoreUser(Store $request)
     {
         // return  $request->all();
         // mapping request data
-        $data = $request->all();       
-        
+        $data = $request->all();
+
         $data['user_id'] = Auth::id();
         $data['status'] = 'Di Ajukan';
         $data['period'] = date ('Y');
         $data['route']='PPA';
-            
+
         // create prospect
         $prospect = new Prospect();
         $prospect->name = $data['name'];
@@ -245,13 +245,13 @@ class TransactoinController extends Controller
         $prospect->save();
 
         $data['prospect_id'] = $prospect->id;
-            
+
         // create transaction
         $transaction = Transaction::create($data);
         //  $this->getSnapRedirect($transaction);
 
         return redirect(route('transaction.success'));
-        
+
     }
 
     public function pmmStore(Store $request)
@@ -265,7 +265,7 @@ class TransactoinController extends Controller
          $data['period'] = date ('Y');
          $data['route']='PMM';
          $data['wali_id']=$getUser->id_user;
-         
+
          // create prospect
          $prospect = new Prospect();
          $prospect->name = $data['name'];
@@ -279,7 +279,7 @@ class TransactoinController extends Controller
          $prospect->save();
 
          $data['prospect_id'] = $prospect->id;
-         
+
          // create checkout
          $checkout = Transaction::create($data);
         //  $this->getSnapRedirect($checkout);
@@ -291,8 +291,8 @@ class TransactoinController extends Controller
     {
         // mapping request data
         $data = $request->all();
- 
-        // create person 
+
+        // create person
         $person = new People();
         $person->name = $data['user_name'];
         $person->phone = $data['user_phone'];
@@ -314,7 +314,7 @@ class TransactoinController extends Controller
         $data['status'] = 'Di Ajukan';
         $data['period'] = date ('Y');
         $data['route']='PMM';
-            
+
         // create prospect
         $prospect = new Prospect();
         $prospect->name = $data['name'];
@@ -328,12 +328,12 @@ class TransactoinController extends Controller
         $prospect->save();
 
         $data['prospect_id'] = $prospect->id;
-            
+
         // create transaction
         $transaction = Transaction::create($data);
         //  $this->getSnapRedirect($transaction);
 
-        return redirect(route('transaction.success')); 
+        return redirect(route('transaction.success'));
     }
 
     /**
@@ -364,7 +364,7 @@ class TransactoinController extends Controller
     {
         // mapping request data
         $data = $request->all();
-        
+
         $prospect = Prospect:: findorFail($transId);
         $prospect->name = $data['name'];
         $prospect->phone = $data['phone'];
@@ -411,8 +411,8 @@ class TransactoinController extends Controller
         $prospect = Prospect:: find($prospect_id);
         $tranId = $getTransaction[0]['id'];
         $transaction = Transaction:: find($tranId);
-            
-    	
+
+
         // return $transaction;
         $prospect->delete();
         $transaction->delete();
