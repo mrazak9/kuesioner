@@ -37,6 +37,11 @@ class UserController extends Controller
             return redirect(route('notlogin'));
             // Mail::to($user->email)->send(new AfterRegister ($user));
         }
+        if (!$user->avatar) {
+            $user->avatar = $data['avatar'];
+            $user->save();
+        }
+
         Auth::login($user, true);
 
         return redirect(route('home'));
@@ -51,9 +56,9 @@ class UserController extends Controller
     public function store(Store $request)
     {
         // mapping request data
-        $data = $request->all();      
- 
-        // create person 
+        $data = $request->all();
+
+        // create person
         $person = new People();
         $person->name = $data['name'];
         $person->nim = $data['nim'];
@@ -76,6 +81,6 @@ class UserController extends Controller
         //  $user = User::create($data);
         //  $this->getSnapRedirect($transaction);
 
-        return redirect(route('view_user')); 
+        return redirect(route('view_user'));
     }
 }

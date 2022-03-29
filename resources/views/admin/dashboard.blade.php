@@ -61,7 +61,6 @@
                                                 style="font-size: x-small; padding: 5px 10px 5px 10px"
                                                 data-target="#deleteUserModal">Delete</a>
                                         </td>
-
                                     </tr>
                                 @empty
                                     <p hidden>{{ $tmp = null }}</p>
