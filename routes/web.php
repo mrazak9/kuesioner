@@ -89,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('prospect/edit/{transId}', [ProspectController::class, 'show'])->name('prospect.show');
         Route::post('prospect/edit/{userId}', [ProspectController::class, 'edit'])->name('prospect.edit');
         Route::get('prospect/delete/{userId}', [ProspectController::class, 'destroy'])->name('prospect.delete');
+        Route::get('prospect/cari', [ProspectController::class, 'cari'])->name('prospect.cari');
     });
 });
 

@@ -118,7 +118,7 @@
                         </table>
                     </div>
                 </main>
-                <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
+                {{-- <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
                     <div class="p-6 mt-8 bg-white rounded-xl">
                         <div>
                             <h2 class="mb-1 text-xl font-semibold">
@@ -240,7 +240,7 @@
                             </tbody>
                         </table>
                     </div>
-                </aside>
+                </aside> --}}
             </div>
         </section>
     </main>

@@ -26,6 +26,18 @@
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="px-6 py-2 mt-2 bg-white rounded-xl">
                         <p hidden>{{ $tmp = 1 }}</p>
+                        <label for="cari" class="block mb-3 font-medium text-gray-700 text-md">Cari Data Prospect :
+                        </label>
+                        <form action="{{ route('admin.prospect.cari') }}" method="GET">
+                            <input placeholder="Cari Prospect .." type="text" name="cari"
+                                class="py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                value="{{ old('cari') }}">
+
+                            <button type="submit"
+                                class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                Cari
+                            </button>
+                        </form>
                         <table class="w-full" aria-label="Table">
                             <thead>
                                 <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
