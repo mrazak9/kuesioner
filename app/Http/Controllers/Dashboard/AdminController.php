@@ -7,6 +7,7 @@ use App\Models\Prospect;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -19,8 +20,13 @@ class AdminController extends Controller
         $partisipantppg = Transaction::Where('route', "PPG")->groupBy('user_id')->count();
         $partisipantppa = Transaction::Where('route', "ppa")->groupBy('user_id')->count();
         $partisipantpmm = Transaction::Where('route', "pmm")->groupBy('user_id')->count();
-        $prospects = Transaction::Where('status', "Di Ajukan")->count();
+        $prospects = Transaction::whereNotNull('status')->count();
         $progress = Prospect::whereNotNull('id_registrant')->count();
-        return view('pages.dashboard.index', compact('pmm', 'ppg', 'ppa', 'prospects', 'partisipantppa', 'partisipantppg', 'partisipantpmm', 'progress'));
+        $dosens= Transaction::whereNotNull('wali_id')->count('wali_id');
+        $dosens = DB::table('transactions')
+                 ->select('wali_id', Transaction::raw('count(wali_id) as total'))
+                 ->groupBy('wali_id')
+                 ->get();
+        return view('pages.dashboard.index', compact('dosens','pmm', 'ppg', 'ppa', 'prospects', 'partisipantppa', 'partisipantppg', 'partisipantpmm', 'progress'));
     }
 }

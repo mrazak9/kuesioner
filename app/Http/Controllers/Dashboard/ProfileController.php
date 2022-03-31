@@ -36,7 +36,7 @@ class ProfileController extends Controller
         $partisipantppg = Transaction::Where('route', "PPG")->groupBy('user_id')->count();
         $partisipantppa = Transaction::Where('route', "ppa")->groupBy('user_id')->count();
         $partisipantpmm = Transaction::Where('route', "pmm")->groupBy('user_id')->count();
-        $prospects = Transaction::Where('status', "Di Ajukan")->count();
+        $prospects = Transaction::whereNotNull('status')->count();
         $progress = Prospect::whereNotNull('id_registrant')->count();
 
         return view('pages.dashboard.user.index', compact('users', 'pmm', 'ppg', 'ppa', 'prospects', 'partisipantppa', 'partisipantppg', 'partisipantpmm', 'progress'));
@@ -77,7 +77,7 @@ class ProfileController extends Controller
         $partisipantppg = Transaction::Where('route', "PPG")->groupBy('user_id')->count();
         $partisipantppa = Transaction::Where('route', "ppa")->groupBy('user_id')->count();
         $partisipantpmm = Transaction::Where('route', "pmm")->groupBy('user_id')->count();
-        $prospects = Transaction::Where('status', "Di Ajukan")->count();
+        $prospects = Transaction::whereNotNull('status')->count();
         $progress = Prospect::whereNotNull('id_registrant')->count();
 
         $user = User::where('id', $id)->first();
