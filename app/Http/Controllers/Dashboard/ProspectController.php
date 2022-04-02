@@ -120,6 +120,7 @@ class ProspectController extends Controller
         $prospect->is_pay_form = $data['is_pay_form'];
         $prospect->is_test = $data['is_test'];
         $prospect->is_pay_regist = $data['is_pay_regist'];
+        $prospect->is_cancel = $data['is_cancel'];
         $prospect->route = $data['route'];
         $prospect->save();
 
@@ -132,11 +133,12 @@ class ProspectController extends Controller
             $status = 'Lulus Tes/Sleksi';
         } elseif ($prospect->is_pay_regist) {
             $status = 'Telah Melakukan registrasi';
+        } elseif ($prospect->is_cancel) {
+            $status = 'Tidak Memenuhi Syarat';
         } else {
-            $status = $data['status'];
+            $status = 'Di Ajukan';
         }
         $transaction->status = $status;
-        //   return $prospect;
         $transaction->save();
 
         // Send Email to User
@@ -231,13 +233,9 @@ class ProspectController extends Controller
     {
         // menangkap data pencarian
         $cari = $request->cari;
-        // $trans = Transaction::with('prospect')->Where('id','like',"%".$cari."%")->paginate();
         $trans = Transaction::with('prospect')->whereHas('prospect', function ($query) use ($cari) {
             return $query->where('name', 'like', "%" . $cari . "%");
         })->paginate(10);
-
-        // $trans = Transaction::with('prospect')->orderBy('created_at', 'desc')->paginate(10);
-        // dd($trans);
 
         $pmm = Transaction::Where('route', "PMM")->count();
         $ppg = Transaction::Where('route', "PPG")->count();

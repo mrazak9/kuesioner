@@ -136,23 +136,27 @@
                                             @endif
                                         </div>
                                         <div class="md:col-span-6 lg:col-span-3">
-                                            <label for="route"
-                                            class="block mb-3 font-medium text-gray-700 text-md">Jalur
+                                            <label for="route" class="block mb-3 font-medium text-gray-700 text-md">Jalur
                                                 Pendaftaran </label>
-                                            <select name="route" type="text"
-                                            class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                                                {{ $errors->has('route') ? 'is-invalid' : '' }}"
-                                                value="{{ $trans->prospect->route ?? '' }}" required>
-                                                <option value=''> -- Pilih Jalur Pendaftaran -- </option>
-                                                {{-- prodi mi --}}
-                                                <option value="Test"> Jalur Test</option>
-                                                <option value="PST"> Jalur PST</option>
-                                                <option value="Bakti Guru"> Jalur Bakti Guru</option>
-                                                <option value="Unggulan"> Jalur Unggulan</option>
-                                                <option value="KIP"> Jalur KIP</option>
-                                                <option value="Transfer LPKIA"> Transfer LPKIA</option>
-                                                <option value="Transfer Non LPKIA"> Transfer Non LPKIA</option>
-                                            </select>
+                                            @if ($trans->prospect->route == 'PPG' or $trans->prospect->route == 'PPA' or $trans->prospect->route == 'PMM')
+                                                <select name="route" type="text"
+                                                    class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                                    {{ $errors->has('route') ? 'is-invalid' : '' }} required>
+                                                    <option value=''> -- Pilih Jalur Pendaftaran -- </option>
+                                                    {{-- prodi mi --}}
+                                                    <option value="Test"> Jalur Test</option>
+                                                    <option value="PST"> Jalur PST</option>
+                                                    <option value="Bakti Guru"> Jalur Bakti Guru</option>
+                                                    <option value="Unggulan"> Jalur Unggulan</option>
+                                                    <option value="KIP"> Jalur KIP</option>
+                                                    <option value="Transfer LPKIA"> Transfer LPKIA</option>
+                                                    <option value="Transfer Non LPKIA"> Transfer Non LPKIA</option>
+                                                </select>
+                                            @else
+                                                <input type="text" name="route" id="route" autocomplete="route"
+                                                    class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                                    value="{{ $trans->prospect->route ?? '' }}" readonly>
+                                            @endif
                                             @if ($errors->has('route'))
                                                 <p class="text-red-500 mb-3 text-sm">{{ $errors->first('route') }}</p>
                                             @endif
@@ -197,6 +201,16 @@
                                                 <p class="text-danger">{{ $errors->first('is_pay_regist') }}</p>
                                             @endif
                                             <label class="form-label">Bayar Regsitrasi</label>
+                                        </div>
+                                        <div class="md:col-span-6 lg:col-span-3">
+                                            <input type="hidden" value="0" name="is_cancel">
+                                            <input name='is_cancel' type="checkbox"
+                                                class="{{ $errors->has('is_cancel') ? 'is-invalid' : '' }}" value=1
+                                                @if ($trans->prospect->is_cancel) checked @endif />
+                                            @if ($errors->has('is_pay_regist'))
+                                                <p class="text-danger">{{ $errors->first('is_pay_regist') }}</p>
+                                            @endif
+                                            <label class="form-label">Tidak Memenuhi Syarat</label>
                                         </div>
                                     </div>
                                 </div>
