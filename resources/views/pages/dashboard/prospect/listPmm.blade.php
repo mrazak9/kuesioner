@@ -106,17 +106,7 @@
                                         <td class="px-1 py-5 text-sm w-2/8">
                                             <div class="flex items-center text-sm">
                                                 <div>
-                                                    @if ($lpmm->prospect->is_iput_form && !$lpmm->prospect->is_pay_form)
-                                                        <strong>Sudah Mengisi Form</strong>
-                                                    @elseif ($lpmm->prospect->is_pay_form && !$lpmm->prospect->is_test)
-                                                        <strong>Berhak Test</strong>
-                                                    @elseif ($lpmm->prospect->is_test && !$lpmm->prospect->is_pay_regist)
-                                                        <strong>Sudah Melakukan Test</strong>
-                                                    @elseif ($lpmm->prospect->is_pay_regist)
-                                                        <strong class="text-success">Sudah melakukan Registrasi</strong>
-                                                    @else
-                                                        <p>{{ $lpmm->status }}</p>
-                                                    @endif
+                                                    <p>{{ $lpmm->status }}</p>
                                                 </div>
                                             </div>
                                         </td>

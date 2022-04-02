@@ -74,6 +74,9 @@ Route::middleware(['auth'])->group(function () {
     // Admin dashboard
     Route::prefix('pages/dashboard')->namespace('Admin')->name('admin.')->middleware('ensureUserRole:admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::get('showProgress', [AdminController::class, 'showProgress'])->name('dashboard.progress');
+        Route::get('prospect/cekRegistrant/{transId}', [AdminController::class, 'cekRegistrant'])->name('dashboard.cekRegistrant');
+        Route::get('syncAll', [AdminController::class, 'syncAll'])->name('dashboard.syncAll');
 
         // // Profile
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');

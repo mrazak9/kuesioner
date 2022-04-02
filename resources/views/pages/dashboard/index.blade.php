@@ -22,8 +22,8 @@
                             class="flex flex-row items-center w-full px-4 py-2 mt-2 text-left bg-white rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4">
 
                             @if (Auth::user()->avatar)
-                                <img src="{{ Auth::user()->avatar }}"
-                                    alt="photo profile" class="inline w-12 h-12 mr-3 rounded-full">
+                                <img src="{{ Auth::user()->avatar }}" alt="photo profile"
+                                    class="inline w-12 h-12 mr-3 rounded-full">
                             @else
                                 <img src="https://ui-avatars.com/api?name=Admin" class="inline w-12 h-12 mr-3 rounded-full">
                             @endif
@@ -42,15 +42,18 @@
                     <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
                         <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
                             <div>
-                                <div>
-                                    <img src="{{ asset('/assets/images/services-progress-icon.svg') }}" alt=""
-                                        class="w-8 h-8">
-                                </div>
-                                <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $progress ?? '' }}</p>
-                                <p class="text-sm text-left text-gray-500">
-                                    Progress <br class="hidden lg:block">
-                                    Semua Jalur
-                                </p>
+                                <a href="{{ route('admin.dashboard.progress')}}" type="button">
+                                    <div>
+                                        <img src="{{ asset('/assets/images/services-progress-icon.svg') }}" alt=""
+                                            class="w-8 h-8">
+                                    </div>
+                                    <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{ $progress ?? '' }}
+                                    </p>
+                                    <p class="text-sm text-left text-gray-500">
+                                        Progress <br class="hidden lg:block">
+                                        Semua Jalur
+                                    </p>
+                                </a>
                             </div>
                         </div>
                         <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white rounded-xl">
@@ -59,7 +62,8 @@
                                     <img src="{{ asset('/assets/images/services-completed-icon.svg') }}" alt=""
                                         class="w-8 h-8">
                                 </div>
-                                <p class="mt-2 text-2xl font-semibold text-left text-gray-800">{{$partisipantpmm+$partisipantppa+$partisipantppg  ?? '' }}</p>
+                                <p class="mt-2 text-2xl font-semibold text-left text-gray-800">
+                                    {{ $partisipantpmm + $partisipantppa + $partisipantppg ?? '' }}</p>
                                 <p class="text-sm text-left text-gray-500">
                                     Partisipan <br class="hidden lg:block">
                                     Semua Jalur
@@ -100,18 +104,18 @@
                             <tbody class="bg-white">
                                 <tr>
                                     <td>PPG</td>
-                                    <td>{{$partisipantppg}}</td>
-                                    <td>{{$ppg}}</td>
+                                    <td>{{ $partisipantppg }}</td>
+                                    <td>{{ $ppg }}</td>
                                 </tr>
                                 <tr>
                                     <td>PMM</td>
-                                    <td>{{$partisipantpmm}}</td>
-                                    <td>{{$pmm}}</td>
+                                    <td>{{ $partisipantpmm }}</td>
+                                    <td>{{ $pmm }}</td>
                                 </tr>
                                 <tr>
                                     <td>PPA</td>
-                                    <td>{{$partisipantppa}}</td>
-                                    <td>{{$ppa}}</td>
+                                    <td>{{ $partisipantppa }}</td>
+                                    <td>{{ $ppa }}</td>
                                 </tr>
 
                             </tbody>

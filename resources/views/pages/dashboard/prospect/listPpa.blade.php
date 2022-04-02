@@ -97,17 +97,7 @@
                                         <td class="px-1 py-5 text-sm w-2/8">
                                             <div class="flex items-center text-sm">
                                                 <div>
-                                                    @if ($lppa->prospect->is_iput_form && !$lppa->prospect->is_pay_form)
-                                                        <strong>Sudah Mengisi Form</strong>
-                                                    @elseif ($lppa->prospect->is_pay_form && !$lppa->prospect->is_test)
-                                                        <strong>Berhak Test</strong>
-                                                    @elseif ($lppa->prospect->is_test && !$lppa->prospect->is_pay_regist)
-                                                        <strong>Sudah Melakukan Test</strong>
-                                                    @elseif ($lppa->prospect->is_pay_regist)
-                                                        <strong class="text-success">Sudah melakukan Registrasi</strong>
-                                                    @else
-                                                        <p>{{ $lppa->status }}</p>
-                                                    @endif
+                                                    <p>{{ $lppa->status }}</p>
                                                 </div>
                                             </div>
                                         </td>

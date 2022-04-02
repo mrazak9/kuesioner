@@ -106,17 +106,7 @@
                                         <td class="px-1 py-5 text-sm w-2/8">
                                             <div class="flex items-center text-sm">
                                                 <div>
-                                                    @if ($lppg->prospect->is_iput_form && !$lppg->prospect->is_pay_form)
-                                                        <strong>Sudah Mengisi Form</strong>
-                                                    @elseif ($lppg->prospect->is_pay_form && !$lppg->prospect->is_test)
-                                                        <strong>Berhak Test</strong>
-                                                    @elseif ($lppg->prospect->is_test && !$lppg->prospect->is_pay_regist)
-                                                        <strong>Sudah Melakukan Test</strong>
-                                                    @elseif ($lppg->prospect->is_pay_regist)
-                                                        <strong class="text-success">Sudah melakukan Registrasi</strong>
-                                                    @else
-                                                        <p>{{ $lppg->status }}</p>
-                                                    @endif
+                                                    <p>{{ $lppg->status }}</p>
                                                 </div>
                                             </div>
                                         </td>

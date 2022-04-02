@@ -147,24 +147,13 @@
                                                     <tr>
                                                         <td class="mb-4 font-medium pl-10 my-4">Id Pendaftar</td>
                                                         <td>: </td>
-                                                        <td>{{ $trans->prospect->name ?? '-' }}</td>
+                                                        <td>{{ $trans->prospect->id_registrant ?? '-' }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="mb-4 font-medium pl-10 my-4">Input Form</td>
                                                         <td>: </td>
                                                         <td>
                                                             @if ($trans->prospect->is_iput_form)
-                                                                Yes
-                                                            @else
-                                                                No
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="mb-4 font-medium pl-10 my-4">Bayar Pendaftaran</td>
-                                                        <td>: </td>
-                                                        <td>
-                                                            @if ($trans->prospect->is_pay_form)
                                                                 Yes
                                                             @else
                                                                 No
@@ -214,17 +203,7 @@
                                                         Status
                                                     </td>
                                                     <td class="mb-4 text-xl font-semibold text-right text-serv-button">
-                                                        @if ($trans->prospect->is_iput_form && !$trans->prospect->is_pay_form)
-                                                            Sudah Mengisi Form
-                                                        @elseif ($trans->prospect->is_pay_form && !$trans->prospect->is_test)
-                                                            Berhak Test
-                                                        @elseif ($trans->prospect->is_test && !$trans->prospect->is_pay_regist)
-                                                            Sudah Melakukan Test
-                                                        @elseif ($trans->prospect->is_pay_regist)
-                                                            Sudah melakukan Registrasi
-                                                        @else
-                                                            {{ $trans->status }}
-                                                        @endif
+                                                        {{ $trans->status }}
                                                     </td>
                                                 </tr>
 
@@ -233,11 +212,18 @@
                                     </div>
                                 </aside>
                                 <div class="p-4 md:text-right lg:col-span-12 md:col-span-12">
-                                    <a href="{{ route('admin.prospect.show', $trans->id)}}"
+                                    @if ($trans->prospect->id_registrant)
+                                        <a href="{{ route('admin.dashboard.cekRegistrant', $trans->prospect->id_registrant ?? '') }}"
+                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
+                                            Sync Pendaftar
+                                        </a>
+                                    @endif
+
+                                    <a href="{{ route('admin.prospect.show', $trans->id) }}"
                                         class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
                                         Edit Prospect
                                     </a>
-                                    <a href="{{ route('admin.prospect.delete', $trans->id)}}"
+                                    <a href="{{ route('admin.prospect.delete', $trans->id) }}"
                                         class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-white bg-red-400 rounded-lg shadow-sm hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
                                         Delete Prospect
                                     </a>
