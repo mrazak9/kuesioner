@@ -46,7 +46,6 @@ class AdminController extends Controller
 
     public function cekRegistrant($id)
     {
-
         $client = new Client();
         $res = $client->request('POST', 'https://lpkia.siakadcloud.com/live/token', [
             'form_params' => [
@@ -75,9 +74,9 @@ class AdminController extends Controller
                 // return $trans;
 
                 $prospect->is_iput_form = $respon['isaktif'];
-                $prospect->is_pay_form = $respon['isfinal'];
+                // $prospect->is_pay_form = $respon['isfinal'];
                 $prospect->is_test = $respon['isditerima'];
-                $prospect->is_pay_regist = $respon['isdaftarulang'];
+                // $prospect->is_pay_regist = $respon['isdaftarulang'];
                 $prospect->save();
 
                 if ($prospect->is_iput_form && !$prospect->is_pay_form) {
@@ -85,6 +84,7 @@ class AdminController extends Controller
                 } elseif ($prospect->is_pay_form && !$prospect->is_test) {
                     $status = 'Berhak Test';
                 } elseif ($prospect->is_test && !$prospect->is_pay_regist) {
+                    $prospect->is_pay_form = true;
                     $status = 'Lulus Tes/Sleksi';
                 } elseif ($prospect->is_pay_regist) {
                     $status = 'Telah Melakukan registrasi';
@@ -146,9 +146,7 @@ class AdminController extends Controller
                     // return $trans;
 
                     $prospect->is_iput_form = $respon['isaktif'];
-                    $prospect->is_pay_form = $respon['isfinal'];
                     $prospect->is_test = $respon['isditerima'];
-                    $prospect->is_pay_regist = $respon['isdaftarulang'];
                     $prospect->save();
 
                     if ($prospect->is_iput_form && !$prospect->is_pay_form) {
@@ -156,6 +154,7 @@ class AdminController extends Controller
                     } elseif ($prospect->is_pay_form && !$prospect->is_test) {
                         $status = 'Berhak Test';
                     } elseif ($prospect->is_test && !$prospect->is_pay_regist) {
+                        $prospect->is_pay_form = true;
                         $status = 'Lulus Tes/Sleksi';
                     } elseif ($prospect->is_pay_regist) {
                         $status = 'Telah Melakukan registrasi';
@@ -168,7 +167,6 @@ class AdminController extends Controller
                 }
             }
         }
-
         return redirect(route('admin.dashboard.progress'));
     }
 }
