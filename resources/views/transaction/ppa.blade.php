@@ -26,6 +26,9 @@
                                     Selamat Datang di Program Partisipasi Alumni, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPA 2022.
                                     jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPA baru.
                                 </p>
+                                <a target="blank" href="https://drive.google.com/file/d/153tGesAA1m0NbH-0oDUexrLF6bWMXreo/view?usp=sharing" class="btn btn-secondary mt-3">
+                                    Ketentuan PPA
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-1 col-12"></div>

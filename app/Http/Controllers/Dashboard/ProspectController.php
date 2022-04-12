@@ -176,7 +176,7 @@ class ProspectController extends Controller
         $prospect->delete();
         $transaction->delete();
 
-        return view('pages.dashboard');
+        return redirect('pages/dashboard/prospect');
     }
 
     public function listPmm()
