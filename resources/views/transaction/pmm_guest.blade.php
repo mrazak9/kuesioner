@@ -82,7 +82,7 @@
                                             <p class="text-danger">{{ $errors->first('prodi_asal') }}</p>
                                         @endif
                                         <option value=''> -- Pilih Prodi Asal -- </option>
-                                        <option value='MI'> Manajemen Informatika</option>
+                                        <option value='MI'> Manajemen Informatika/STMIK</option>
                                         <option value='AB'> Administrasi Bisnis</option>
                                         <option value='KA'> Komputer Akuntansi</option>
                                     </select>

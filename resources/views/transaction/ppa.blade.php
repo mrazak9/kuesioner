@@ -23,10 +23,14 @@
                                     Perhatian!
                                 </h1>
                                 <p class="description">
-                                    Selamat Datang di Program Partisipasi Alumni, mohon di pastikan bahwa ini adalah pertama kali anda menginput data PPA 2022.
-                                    jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPA baru.
+                                    Selamat Datang di Program Partisipasi Alumni, mohon di pastikan bahwa ini adalah pertama
+                                    kali anda menginput data PPA 2022.
+                                    jika anda pernah menginput data sebelumnya silahkan untuk login dan tambahkan data PPA
+                                    baru.
                                 </p>
-                                <a target="blank" href="https://drive.google.com/file/d/153tGesAA1m0NbH-0oDUexrLF6bWMXreo/view?usp=sharing" class="btn btn-secondary mt-3">
+                                <a target="blank"
+                                    href="https://drive.google.com/file/d/153tGesAA1m0NbH-0oDUexrLF6bWMXreo/view?usp=sharing"
+                                    class="btn btn-secondary mt-3">
                                     Ketentuan PPA
                                 </a>
                             </div>
@@ -77,12 +81,18 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Asal Prodi</label>
-                                    <input name='prodi_asal' type="text"
-                                        class="form-control {{ $errors->has('prodi_asal') ? 'is-invalid' : '' }}"
-                                        value="{{ old('prodi_asal') }}" required />
-                                    @if ($errors->has('prodi_asal'))
-                                        <p class="text-danger">{{ $errors->first('prodi_asal') }}</p>
-                                    @endif
+                                    <select name="prodi_asal" type="text"
+                                        class="form-control select2
+                                        {{ $errors->has('prodi_asal') ? 'is-invalid' : '' }}"
+                                        value="{{ old('prodi_asal') }}" required>
+                                        @if ($errors->has('prodi_asal'))
+                                            <p class="text-danger">{{ $errors->first('prodi_asal') }}</p>
+                                        @endif
+                                        <option value=''> -- Pilih Prodi Asal -- </option>
+                                        <option value='MI'> Manajemen Informatika/STMIK</option>
+                                        <option value='AB'> Administrasi Bisnis</option>
+                                        <option value='KA'> Komputer Akuntansi</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Tahun Lulus</label>
