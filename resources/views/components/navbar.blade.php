@@ -10,7 +10,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown" id="myDropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Input Calon Mahasiswa </a>
+                    @if (Auth::user())
+                        @if (Auth::user()->occupation == 'Mahasiswa')
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Input Calon Mahasiswa
+                            </a>
+                        @endif
+                    @else
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Input Calon Mahasiswa
+                        </a>
+                    @endif
                     <ul class="dropdown-menu">
                         @if (Auth::user())
                             @if (Auth::user()->occupation == 'Mahasiswa')
@@ -65,7 +73,8 @@
                             @endif
                         @else
                             <li>
-                                <a class="dropdown-item" href="{{ route('transaction.create.ppg_guest') }}"> PPG (Guru) </a>
+                                <a class="dropdown-item" href="{{ route('transaction.create.ppg_guest') }}"> PPG
+                                    (Guru) </a>
                             </li>
                         @endif
                     </ul>
